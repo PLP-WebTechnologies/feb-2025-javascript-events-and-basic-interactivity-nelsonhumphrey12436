@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Website</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #8282f0;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    /* Button Styles */
+    .hover-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    .hover-btn:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Section Container */
+    .section {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Hover Effect */
+    .hover-btn:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Gallery Styles */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Tab Styles */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      cursor: pointer;
+    }
+
+    .tab {
+      background-color: #f1f1f1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .tab:hover {
+      background-color: #ddd;
+    }
+
+    .active-tab {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .show {
+      display: block;
+    }
+
+    /* Form Styles */
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .form-container input:focus {
+      border-color: #4CAF50;
+    }
+
+    .form-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+
+    .feedback {
+      color: red;
+      margin-top: 10px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 600px) {
+      .section {
+        width: 90%;
+      }
+
+      .tabs {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-container {
+        width: 100%;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Event Handling Section -->
+  <div class="section">
+    <h1>Event Handling</h1>
+    <button class="hover-btn" id="btnClick">Click Me!</button>
+    <div id="btnFeedback"></div>
+  </div>
+
+  <div class="section">
+    <h2>Hover over me</h2>
+    <button class="hover-btn" id="btnHover">Hover Me!</button>
+  </div>
+
+  <div class="section">
+    <h2>Press a key</h2>
+    <input type="text" id="keypressInput" placeholder="Press a key...">
+  </div>
+
+  <div class="section">
+    <h2>Bonus - Double Click or Long Press</h2>
+    <button id="secretBtn" class="hover-btn">Double-click me!</button>
+    <div id="secretAction" class="hidden">Secret Action Revealed!</div>
+  </div>
+
+  <!-- Interactive Elements Section -->
+  <div class="section">
+    <h1>Interactive Elements</h1>
+    <button id="colorChangeBtn" class="hover-btn">Change Color</button>
+    <div id="colorChangeDiv" style="height: 100px; background-color: lightblue; margin-top: 10px;"></div>
+  </div>
+
+  <div class="section">
+    <h2>Image Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/100" alt="Image 1">
+      <img src="https://via.placeholder.com/100" alt="Image 2">
+      <img src="https://via.placeholder.com/100" alt="Image 3">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Tabs</h2>
+    <div class="tabs">
+      <div class="tab" onclick="showTab(0)">Tab 1</div>
+      <div class="tab" onclick="showTab(1)">Tab 2</div>
+      <div class="tab" onclick="showTab(2)">Tab 3</div>
+    </div>
+    <div id="tab1" class="tab-content show">Content for Tab 1</div>
+    <div id="tab2" class="tab-content">Content for Tab 2</div>
+    <div id="tab3" class="tab-content">Content for Tab 3</div>
+  </div>
+
+  <!-- Form Validation Section -->
+  <div class="section form-container">
+    <h1>Form Validation</h1>
+    <form id="form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required><br>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="formFeedback" class="feedback"></div>
+  </div>
+
+  <script>
+    // Event Handling
+    document.getElementById('btnClick').addEventListener('click', () => {
+      document.getElementById('btnFeedback').innerText = 'Button clicked!';
+    });
+
+    document.getElementById('btnHover').addEventListener('mouseover', () => {
+      document.getElementById('btnHover').innerText = 'Hovered!';
+    });
+
+    document.getElementById('keypressInput').addEventListener('keydown', (e) => {
+      document.getElementById('keypressInput').value = `Key pressed: ${e.key}`;
+    });
+
+    let timeout;
+    document.getElementById('secretBtn').addEventListener('dblclick', () => {
+      document.getElementById('secretAction').classList.toggle('hidden');
+    });
+
+    document.getElementById('secretBtn').addEventListener('mousedown', () => {
+      timeout = setTimeout(() => {
+        document.getElementById('secretAction').classList.toggle('hidden');
+      }, 1000); // Long press time
+    });
+
+    document.getElementById('secretBtn').addEventListener('mouseup', () => {
+      clearTimeout(timeout);
+    });
+
+    // Interactive Elements
+    document.getElementById('colorChangeBtn').addEventListener('click', () => {
+      document.getElementById('colorChangeDiv').style.backgroundColor = 'orange';
+    });
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        alert(`You clicked on ${img.alt}`);
+      });
+    });
+
+    function showTab(index) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('show'));
+      document.getElementById(`tab${index + 1}`).classList.add('show');
+    }
+
+    // Form Validation
+    document.getElementById('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      let feedback = '';
+
+      // Email validation
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailRegex.test(email)) {
+        feedback += 'Invalid email format.\n';
+      }
+
+      // Password validation
+      if (password.length < 8) {
+        feedback += 'Password must be at least 8 characters.\n';
+      }
+
+      document.getElementById('formFeedback').innerText = feedback || 'Form submitted successfully!';
+    });
+  </script>
+
+</body>
+</html>
